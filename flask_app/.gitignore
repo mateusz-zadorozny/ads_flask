@@ -1,0 +1,3 @@
+.vercel
+# Ignore the virtual environment directory
+myenv/
