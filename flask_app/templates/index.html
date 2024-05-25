@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Performance Analysis</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hourly Ad Performance for Meta Ads</h1>
+        {% if not error_message %}
+        <p>Use the tool to find the worst performing hours and possible improvement made by
+            excluding them from the
+            schedule.</p>
+        {% endif %}
+        {% if error_message %}
+        <p class="error">{{ error_message|safe }}</p>
+        {% endif %}
+        <form action="/analyze" method="post" enctype="multipart/form-data">
+            <label for="currency">Currency:</label>
+            <input type="text" id="currency" name="currency" value="NOK" required>
+            <label for="file">CSV File:</label>
+            <input type="file" id="file" name="file" accept=".csv" required>
+            <input type="submit" value="Analyze">
+        </form>
+        <h2>How to get the right file?</h2>
+        <p>Currently the tool accepts only Facebook Ads Manager .csv files created while your account is set to english.
+        </p>
+        <ol>
+            <li>Select one campaign or ad set.</li>
+            <li>Then use the filter: Selection only.</li>
+            <li>After you see only one campaign or ad set, use
+                the export feature.</li>
+            <li>Choose the .csv file format.</li>
+        </ol>
+    </div>
+    <p style="text-align: center;">Created by <a href="https://mpress.cc">Mateusz Zadorożny - mpress.cc</a></p>
+</body>
+
+</html>

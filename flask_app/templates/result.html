@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Performance Analysis Result</title>
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container results">
+        <h1 class="{{ recommendation['style'] }}">{{ recommendation['message']|safe }}</h1>
+        <p>Window Size: {{ recommendation['window_size'] }} hours</p>
+        <p>Worst Consecutive Hours: {{ recommendation['worst_consecutive_hours'] }}</p>
+        <p>Current Average Cost per Result: {{ recommendation['current_avg_cost'] }} {{ currency }}</p>
+        <p>Average Cost per Result (Worst {{ recommendation['window_size'] }} Hours): {{
+            recommendation['avg_cost_worst_hours'] }} {{ currency }}</p>
+        <p>Average Cost per Result (Remaining Hours): {{ recommendation['avg_cost_remaining_hours'] }} {{ currency }}
+        </p>
+        <p>Improvement Percentage: {{ recommendation['improvement_percentage'] }}%</p>
+        <p>P-value: {{ recommendation['p_value'] }}</p>
+        <br>
+        <p class="explanation">
+            <strong>P-value:</strong> This number helps us understand if the difference we see between two groups is
+            real
+            or just happened by luck. Imagine you flip a coin 100 times and it lands on heads 60 times. The P-value
+            helps
+            you figure out if the coin might be special (like having a higher chance of landing on heads) or if it's
+            just
+            a normal coin and you got heads 60 times by chance.
+            <br>
+            For example:
+        <ul>
+            <li>A small P-value (less than 0.05) means the difference is probably real and not just by chance. This is
+                usually
+                good.</li>
+            <li>A large P-value (greater than 0.05) means the difference might just be due to luck.</li>
+        </ul>
+        In our case, a P-value of {{ recommendation['p_value'] }} means that there's a {{ recommendation['p_value'] *
+        100 }}%
+        chance that the difference in performance between
+        the groups is due to luck.
+        </p>
+        <a href="/">Back</a>
+    </div>
+</body>
+
+</html>

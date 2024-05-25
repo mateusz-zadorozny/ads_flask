@@ -1,0 +1,3 @@
+myenv/bin/f2py
+# Ignore the virtual environment directory
+myenv/
