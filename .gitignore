@@ -1,3 +1,4 @@
-myenv/bin/f2py
 # Ignore the virtual environment directory
 myenv/
+flask_app/app.log
+flask_app/__pycache__/
