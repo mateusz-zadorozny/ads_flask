@@ -13,7 +13,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
-def analyze():
+def analyze(): 
     currency = request.form['currency']
     file = request.files['file']
     
@@ -136,7 +136,7 @@ def analyze():
 
     except (ValueError, KeyError, csv.Error) as e:
         app.logger.error(f"Error: {str(e)}")
-        error_message = f"<span style='color:var(--danger)'>Sorry - the file contents are wrong.</span><br>{str(e)}<br>Your file must have the following columns:<br><ul><li>Results</li><li>Time of day (ad account time zone)</li><li>Amount spent (XXX)</li></ul>Where XXX must match the selected currency."
+        error_message = f"<span style='color:var(--light-danger)'>Sorry - the file contents are wrong.</span><br>{str(e)}<br>Your file must have the following columns:<br><ul><li>Results</li><li>Time of day (ad account time zone)</li><li>Amount spent (XXX)</li></ul>Where XXX must match the selected currency."
         return render_template('index.html', error_message=error_message)
 
 if __name__ == '__main__':
